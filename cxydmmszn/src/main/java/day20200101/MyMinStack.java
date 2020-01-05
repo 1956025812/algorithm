@@ -10,6 +10,8 @@ import java.util.Stack;
  * <p>
  * 思路：
  * 构造一个临时的栈，用来存放最小的数据。
+ * push数据的时候与临时栈的栈顶元素做比较，如果小，就放到临时栈
+ * pop数据的时候与临时栈的栈顶元素做比较，如果一样，则同步pop
  */
 public class MyMinStack {
 
@@ -48,6 +50,13 @@ public class MyMinStack {
         if(dataStack.isEmpty()) {
             throw new RuntimeException("当前栈dataStata没有数据");
         }
+
+        // 如果要pop的元素正好是最小元素，则要同时一起将临时栈的元素pop
+        Integer popData = dataStack.peek();
+        if(popData.equals(tempStack.peek())) {
+            tempStack.pop();
+        }
+
         return dataStack.pop();
     }
 
@@ -72,6 +81,8 @@ public class MyMinStack {
         myMinStack.push(3);
         myMinStack.push(6);
         myMinStack.push(1);
+        System.out.println(myMinStack.getMin());
+        myMinStack.pop();
         System.out.println(myMinStack.getMin());
     }
 }
