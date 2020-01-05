@@ -71,6 +71,7 @@ public class MyMinStack {
         myMinStack.push(2);
         myMinStack.push(3);
         myMinStack.push(6);
+        myMinStack.push(1);
         System.out.println(myMinStack.getMin());
     }
 }
